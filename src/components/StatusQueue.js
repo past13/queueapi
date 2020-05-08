@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { QueueContext } from './QueueContext';
+import QueueItem from './QueueItem'
 
 const StatusQueue = () => {
     const { queue } = useContext(QueueContext)
@@ -53,20 +54,6 @@ const StatusQueue = () => {
         }) 
       }
     }
-
-    const QueueItem = ({queue}) => (
-        <div>
-          <div>
-            {queue.date}
-          </div>
-          <div>
-            {queue.name}
-          </div>
-          <div>
-            {queue.phoneNumber}
-          </div>
-        </div>
-    )
     
     return (
         <div className="header">
@@ -86,7 +73,7 @@ const StatusQueue = () => {
                 <input type='number' name='phoneNumber' onChange={handleChange} noValidate />
               </div>
               <button>get existing queue</button>
-              <div>{state.foundQueue?.name? <QueueItem queue={state.foundQueue} /> : 'no queue'}</div>
+              <div>{state.foundQueue?.name? <QueueItem queue={state.foundQueue} /> : 'nof found queue'}</div>
             </form>
           </div>
         </div>

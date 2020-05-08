@@ -38,9 +38,9 @@ const QueueList = () => {
 
     return (
         <div>
-            <button onClick={() => setSeedQueueList()}>Set Seed queue list</button>
-            <button onClick={() => getQueueList()}>Get Queue list</button>
-            <button onClick={() => clearQueue()}>Clear queue</button>
+            <button onClick={setSeedQueueList}>Set Seed queue list</button>
+            <button onClick={getQueueList}>Get Queue list</button>
+            <button onClick={clearQueue}>Clear queue</button>
             <div>
                 {state.queueList? showQueueList() : []}
             </div>

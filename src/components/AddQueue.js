@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { QueueContext } from './QueueContext';
-import ValidateForm from '../utils/validateForm'; 
-import validNumberRegex from '../utils/regexValid';
+import { ValidateForm, ValidateInput } from '../utils/validateForm'; 
 
 const AddQueue = () => {
     const { queue, setQueue } = useContext(QueueContext)
@@ -43,20 +42,7 @@ const AddQueue = () => {
         let queue = state.queue;
         let errors = state.errors;
 
-        switch (name) {
-          case 'name': 
-            errors.name = value.length < 5
-                ? 'Name must be 5 characters long!'
-                : '';
-            break;
-          case 'phoneNumber': 
-            errors.phoneNumber = !validNumberRegex.test(value)
-                ? 'Phone number is not valid!'
-                : '';
-            break;
-          default:
-            break;
-        }
+        errors = ValidateInput(name, value, state.errors)
 
         setState({
           ...state,
@@ -74,14 +60,12 @@ const AddQueue = () => {
               <div>
                 <label htmlFor="name">Name</label>
                 <input type='text' name='name' onChange={handleChange} noValidate />
-                {errors.name.length > 0 && 
-                  <span>{errors.name}</span>}
+                {errors.name.length > 0 && <span>{errors.name}</span>}
               </div>
               <div>
                 <label htmlFor="phoneNumber">phoneNumber</label>
                 <input type='number' name='phoneNumber' onChange={handleChange} noValidate />
-                {errors.phoneNumber.length > 0 && 
-                  <span>{errors.phoneNumber}</span>}
+                {errors.phoneNumber.length > 0 && <span>{errors.phoneNumber}</span>}
               </div>
               <div>
                 <span>{state.queueAdded === true ? "queue exist" : ""}</span>
