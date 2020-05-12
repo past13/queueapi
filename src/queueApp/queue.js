@@ -17,13 +17,11 @@ export default class Queue {
 
     filterItems(items, inputProps) {
         const props = Object.entries(inputProps) 
-        const attr = props[0][0]
-        const prop = props[0][1]
-        props.shift()
+        const attr = props.shift()
 
+        items = items.filter(x => x[attr[0]] === attr[1])
         if (items.length > 0 && props.length > 0) {
-            const result = items.filter(x => x[attr] === prop)
-            return this.filterItems(result, props)
+            return this.filterItems(items, { [props[0][0]]: props[0][1] })
         } 
         
         return items
@@ -92,7 +90,7 @@ export default class Queue {
     }
 
     getList() {
-        return this.items
+        return Object.values(this.items)
     }
 
     seedQueueList() {

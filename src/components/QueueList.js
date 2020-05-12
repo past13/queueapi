@@ -1,6 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { QueueContext } from './QueueContext';
 
+import styled from 'styled-components'
+
 const QueueList = () => {
     const { queue } = useContext(QueueContext)
     const [state, setState] = useState({
@@ -37,16 +39,29 @@ const QueueList = () => {
     }
 
     return (
-        <div>
-            <button onClick={setSeedQueueList}>Set Seed queue list</button>
-            <button onClick={getQueueList}>Get Queue list</button>
-            <button onClick={clearQueue}>Clear queue</button>
-            <div>
-                {state.queueList? showQueueList() : []}
+        <QueueListContainer>
+            <div className="container">
+                <button onClick={setSeedQueueList}>Set Seed queue list</button>
+                <button onClick={getQueueList}>Get Queue list</button>
+                <button onClick={clearQueue}>Clear queue</button>
+                <div>
+                    {state.queueList? showQueueList() : []}
+                </div>
+                <div className="totalSize">{state.totalSize > 0 ? state.totalSize : ""}</div>
             </div>
-            <div className="totalSize">{state.totalSize > 0 ? state.totalSize : ""}</div>
-        </div>
+        </QueueListContainer>
     )
 }
 
 export default QueueList;
+
+const QueueListContainer = styled.div`
+  .container {
+    border-radius: 5px;
+    border: 2px solid grey;
+    width: 90%;
+    height: 200px;
+    max-width: 500px; 
+    min-width: 350px;
+  }
+`
