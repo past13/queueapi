@@ -76,16 +76,18 @@ const StatusQueue = () => {
               <div>
                 {state.currentQueue?.name? <QueueItem queue={state.currentQueue} /> : <div>no queue</div>}
               </div>
-              <form onSubmit={getQueue} noValidate>
-                  <div>
+              <form className="search-form" onSubmit={getQueue} noValidate>
+                  <div className="input-container">
                     <label htmlFor="name">Name</label>
                     <input className="name" type='text' name='name' onChange={handleChange} noValidate />
                   </div>
-                  <div>
-                    <label htmlFor="phoneNumber">phoneNumber</label>
+                  <div className="">
+                    <label htmlFor="phoneNumber">Phone number</label>
                     <input className="phoneNumber" type='number' name='phoneNumber' onChange={handleChange} noValidate />
                   </div>
-                  <div className="submit-button" onClick={getQueue}>Get queue</div>
+                  <div className="check-button">
+                    <div className="submit-button" onClick={getQueue}>Get queue</div>
+                  </div>
                   <div>{state.foundQueue?.name? <QueueItem queue={state.foundQueue} /> : 'nof found queue'}</div>
               </form>
           </div>
@@ -96,12 +98,13 @@ const StatusQueue = () => {
 export default StatusQueue;
 
 const StatusQueueForm = styled.div`
+  
   .form-wrapper {
     display: flex;
     flex-direction: column;
     width: 280px;
     max-width: 80%;
-    min-width: 100px;
+    min-width: 300px;
     min-height: 400px;
     padding: 20px 40px;
     border-radius: 6px;
@@ -123,6 +126,7 @@ const StatusQueueForm = styled.div`
   }
 
   .submit-button {
+    font-size: 12px;
     text-align: center;
     width: 50%;
     cursor: pointer;
@@ -148,14 +152,19 @@ const StatusQueueForm = styled.div`
 
   .name,
   .phoneNumber {
-    width: 100%;
+    width: 90%;
     display: flex;
     flex-direction: column;
-    margin-bottom: 15px;
+    margin: 10px 0px 15px 0px;
+  }
+
+  .check-button {
+    margin: 20px 0px 20px 0px;
   }
 
   .check-container {
     margin: 20px 0px 20px 0px;
+
     .submit-button {
       display: inline;
       margin-right: 10px;
@@ -163,8 +172,7 @@ const StatusQueueForm = styled.div`
     }
   }
 
-  
-
-
-
+  .search-form {
+    padding: 20px 0px 20px 0px;
+  }
 `

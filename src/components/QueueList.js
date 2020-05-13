@@ -29,7 +29,7 @@ const QueueList = () => {
     function showQueueList() {
         return state.queueList.map( q => {
             return (
-                <div key={q.id}>
+                <div className="queue-item" key={q.id}>
                     <div>{q.date}</div>
                     <div>{q.name}</div>
                     <div>{q.phoneNumber}</div>
@@ -40,11 +40,13 @@ const QueueList = () => {
 
     return (
         <QueueListContainer>
-            <div className="container">
-                <button onClick={setSeedQueueList}>Set Seed queue list</button>
-                <button onClick={getQueueList}>Get Queue list</button>
-                <button onClick={clearQueue}>Clear queue</button>
-                <div>
+            <div className="form-wrapper">
+                <div className="button-container">
+                    <div className="submit-button" onClick={setSeedQueueList}>Set Seed queue list</div>
+                    <div className="submit-button" onClick={getQueueList}>Get Queue list</div>
+                    <div className="submit-button" onClick={clearQueue}>Clear queue</div>
+                </div>
+                <div className="queue-list">
                     {state.queueList? showQueueList() : []}
                 </div>
                 <div className="totalSize">{state.totalSize > 0 ? state.totalSize : ""}</div>
@@ -56,12 +58,51 @@ const QueueList = () => {
 export default QueueList;
 
 const QueueListContainer = styled.div`
-  .container {
-    border-radius: 5px;
-    border: 2px solid grey;
-    width: 90%;
-    height: 200px;
-    max-width: 500px; 
-    min-width: 350px;
-  }
+    .form-wrapper {
+        display: flex;
+        flex-direction: column;
+        width: 280px;
+        max-width: 90%;
+        min-width: 340px;
+        min-height: 400px;
+        padding: 20px 40px;
+        border-radius: 6px;
+        box-shadow: 0px 8px 36px #d6d1d5;
+        background-color: #fefefe;
+    }
+
+    .submit-button {
+        margin-right: 10px;
+        display: inline;
+        font-size: 12px;
+        text-align: center;
+        cursor: pointer;
+        padding: 0.7em;
+        border-radius: 4px;
+        background-color: #22223B;
+        color: #fefefe;
+    }
+    
+    .submit-button:hover {
+        background-color: #4A4E69;
+        color: #fefefe;
+    }
+
+    .button-container {
+        margin: 20px 0px 20px 0px;
+    }
+
+    .queue-item div {
+        margin: 5px 0px 5px 0px;
+    }
+
+    .queue-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 10px;
+    }
+
+    .totalSize {
+        padding-top: 200px;
+    }
 `

@@ -21,6 +21,7 @@ const AddQueue = () => {
         e.preventDefault()
         if(ValidateForm(state.errors)) {
           const addQueue = queue.enqueue(queue.getLastId(), state.name, +state.phoneNumber)
+
           if (addQueue) {
             setQueue(queue)
             setState({
@@ -92,9 +93,7 @@ const AddQueue = () => {
                   <div className="info">
                     {state.queueExist === true ? "Queue with name and phone exist already exist" : ""}
                   </div>
-                  <div className="submit">
-                    <button>Create</button>
-                  </div>
+                  <button className="submit-button">Create</button>
                 </form>
               </div>
             </div>
@@ -165,19 +164,18 @@ const AddQueueForm = styled.div`
     color: #bbb;
   }
 
-  button {
-    min-width: 100%;
+  .submit-button {
+    font-size: 12px;
+    text-align: center;
+    width: 100%;
     cursor: pointer;
-    margin-right: 0.25em;
-    margin-top: 0.5em;
-    padding: 	0.938em;
-    border: none;
+    padding: 	0.5em;
     border-radius: 4px;
     background-color: #22223B;
     color: #fefefe;
   }
-  
-  button:hover {
+
+  .submit-button:hover {
     background-color: #4A4E69;
     color: #fefefe;
   }
