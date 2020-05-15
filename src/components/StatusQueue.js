@@ -73,9 +73,7 @@ const StatusQueue = () => {
                 <div className="submit-button" onClick={currentQueue}>Current queue</div>
                 <div className="submit-button" onClick={nextQueue}>Next queue</div>
               </div>
-              <div>
-                {state.currentQueue?.name? <QueueItem queue={state.currentQueue} /> : <div>no queue</div>}
-              </div>
+              {state.currentQueue?.name? <QueueItem queue={state.currentQueue} /> : <div>no queue</div>}
               <form className="search-form" onSubmit={getQueue} noValidate>
                   <div className="input-container">
                     <label htmlFor="name">Name</label>
@@ -110,6 +108,12 @@ const StatusQueueForm = styled.div`
     border-radius: 6px;
     box-shadow: 0px 8px 36px #d6d1d5;
     background-color: #fefefe;
+  }
+
+  label {
+    margin-bottom: 0.5em;
+    color: #444;
+    font-weight: lighter;
   }
 
   input {

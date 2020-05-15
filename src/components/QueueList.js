@@ -49,7 +49,7 @@ const QueueList = () => {
                 <div className="queue-list">
                     {state.queueList? showQueueList() : []}
                 </div>
-                <div className="totalSize">{state.totalSize > 0 ? state.totalSize : ""}</div>
+                <div className="totalSize">{state.totalSize > 0 ? "Total queue: " + state.totalSize : ""}</div>
             </div>
         </QueueListContainer>
     )
@@ -92,6 +92,12 @@ const QueueListContainer = styled.div`
         margin: 20px 0px 20px 0px;
     }
 
+    .queue-item {
+        padding: 5px;
+        border: 1px solid grey;
+        border-radius: 5px;
+    }
+
     .queue-item div {
         margin: 5px 0px 5px 0px;
     }
@@ -103,6 +109,6 @@ const QueueListContainer = styled.div`
     }
 
     .totalSize {
-        padding-top: 200px;
+        padding-top: 50px;
     }
 `
