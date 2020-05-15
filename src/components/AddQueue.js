@@ -20,7 +20,8 @@ const AddQueue = () => {
     function handleSubmit (e) {
         e.preventDefault()
         if(ValidateForm(state.errors)) {
-          const addQueue = queue.enqueue(queue.getLastId(), state.name, +state.phoneNumber)
+          let date = new Date()
+          const addQueue = queue.enqueue(queue.getLastId(), state.name, +state.phoneNumber, date)
 
           if (addQueue) {
             setQueue(queue)

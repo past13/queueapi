@@ -1,18 +1,10 @@
+import { InitDate } from './../utils/initDate';
+
 export default class Queue {
     constructor() {
         this.count = 0
         this.lowestCount = 0
         this.items = {}
-    }
-
-    initDate() {
-        let current_datetime = new Date()
-        return current_datetime.getFullYear() 
-        + "-" + (current_datetime.getMonth() + 1) 
-        + "-" + current_datetime.getDate() 
-        + " " + current_datetime.getHours() 
-        + ":" + current_datetime.getMinutes() 
-        + ":" + current_datetime.getSeconds()
     }
 
     filterItems(items, inputProps) {
@@ -36,12 +28,12 @@ export default class Queue {
         .find(x => x.name === item.name && x.phone === item.phone) ? true : false 
     }
 
-    enqueue(id, name, phoneNumber) { 
+    enqueue(id, name, phoneNumber, date) { 
         const item = {
             id: id,
             name: name,
             phoneNumber: phoneNumber,
-            date: this.initDate()
+            date: InitDate(date)
         }
 
         if (!this.isItemExist(item)) {
@@ -97,26 +89,30 @@ export default class Queue {
         const seedList = [{ 
             id: 0,
             name: "QueueA",
-            phoneNumber: 21
+            phoneNumber: 21,
+            date: new Date("2020-05-05 10:10:10")
         },
         { 
             id: 1,
             name: "QueueB",
-            phoneNumber: 22
+            phoneNumber: 22,
+            date: new Date("2020-05-05 11:11:11")
         },
         { 
             id: 2,
             name: "QueueC",
-            phoneNumber: 23
+            phoneNumber: 23,
+            date: new Date("2020-05-05 12:12:12")
         },
         { 
             id: 3,
             name: "QueueD",
-            phoneNumber: 24
+            phoneNumber: 24,
+            date: new Date("2020-05-05 13:13:13")
         }]
 
         for (let item of seedList) {
-            this.enqueue(item.id, item.name, item.phoneNumber)
+            this.enqueue(item.id, item.name, item.phoneNumber, item.date)
         }
     }
 }
